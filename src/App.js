@@ -11,14 +11,15 @@ function App() {
   return (
     <Router>
       <div className="app">
-        <Header />
+        <Header />   
           <div className="app__body">
+        <Sidebar />
             <Routes>
               <Route path="/mail" element={<Mail />}/>
               <Route path="/" element={<EmailList />}/>
             </Routes>
           </div>
-        <Sidebar />
+     
 
       </div>
     </Router>
