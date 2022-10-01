@@ -7,8 +7,11 @@ import EmailList from "./EmailList";
 import SendMail from "./components/SendMail";
 
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { selectSendMessageIsOpen } from "./features/mailSlice";
 
 function App() {
+  const sendMessageIsOpen = useSelector(selectSendMessageIsOpen)
   return (
     <Router>
       <div className="app">
@@ -21,7 +24,7 @@ function App() {
           </Routes>
         </div>
 
-        <SendMail />
+        {sendMessageIsOpen &&<SendMail />}
       </div>
     </Router>
   );
@@ -32,3 +35,6 @@ export default App;
 // 1:44:01
 // 2:02:04
 // 2:43:42
+// 20 minutes
+// 2:51:39 
+// 2:31 pm 
