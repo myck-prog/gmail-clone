@@ -24,7 +24,7 @@ function EmailRow({ id, title, subject, description, time }) {
   };
 
   return (
-    <div onClick={() => navigate("/mail")} className="emailRow">
+    <div onClick={openMail} className="emailRow">
       <div className="emailRow__options">
         <Checkbox />
         <IconButton>

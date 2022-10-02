@@ -23,6 +23,7 @@ function Mail() {
   const navigate = useNavigate();
   const selectedMail = useSelector(selectOpenMail)
 
+
   return (
     <div className="mail">
       <div className="mail__tools">

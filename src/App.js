@@ -5,15 +5,42 @@ import Sidebar from "./Sidebar";
 import Mail from "./Mail";
 import EmailList from "./EmailList";
 import SendMail from "./components/SendMail";
+import Login from './Login'
 
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { selectSendMessageIsOpen } from "./features/mailSlice";
+import { selectUser } from "./features/userSlice";
+import { useDispatch } from "react-redux";
+import {useEffect} from "react";
+import { auth } from "./firebase";
+import { login }from './features/userSlice'
+
 
 function App() {
   const sendMessageIsOpen = useSelector(selectSendMessageIsOpen)
+  const user = useSelector(selectUser)
+  const dispatch = useDispatch();
+
+  useEffect(()=>{
+    auth.onAuthStateChanged(user =>{
+      if (user) {
+        // user is logged in , persistent login change
+        dispatch(login({
+          displayName: user.displayName,
+          email: user.email,
+          photoUrl: user.photoURL
+        }))
+      }
+    })
+  },[])
   return (
     <Router>
+
+
+    {!user ? (
+      <Login />
+    ):(
       <div className="app">
         <Header />
         <div className="app__body">
@@ -26,14 +53,11 @@ function App() {
 
         {sendMessageIsOpen &&<SendMail />}
       </div>
+    )}
+
+      
     </Router>
   );
 }
 
 export default App;
-//  59:14
-// 1:44:01
-// 2:02:04
-// 2:43:42
-// 2:51:39 
-// 3:44:55 error stuck
