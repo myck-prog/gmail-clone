@@ -35,6 +35,5 @@ export default App;
 // 1:44:01
 // 2:02:04
 // 2:43:42
-// 20 minutes
 // 2:51:39 
-// 2:31 pm 
+// 3:44:55 error stuck
